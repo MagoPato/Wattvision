@@ -1,0 +1,51 @@
+:root {
+  --cursor-default: url("../img/Cursor.png"), auto;
+  --cursor-activo: url("../img/Cursor_activo.png"), auto;
+}
+
+* {
+  cursor: var(--cursor-default);
+}
+
+body {
+  cursor: var(--cursor-default);
+}
+
+a,
+button,
+select,
+option,
+input,
+.login-container button:hover {
+  cursor: var(--cursor-activo);
+}
+
+/* Cursor personalizado para elementos seleccionables */
+.choices,
+.choices--single,
+.choices__inner,
+.choices__item--selectable,
+.choices__item--highlighted,
+.choices:focus,
+.choices__list.choices_list--selectable:hover,
+.choices__item--selectable:hover,
+.choices__list,
+.choices__item,
+.navbar img,
+.container-fluid span,
+.nav-item,
+.nav-link,
+.nav-item img {
+  cursor: var(--cursor-activo);
+}
+
+/* Cursor para elementos no permitidos */
+.choices__item--selectable:disabled,
+.choices__item--highlighted:disabled,
+.choices__item:not(.choices__item--selectable):hover {
+  cursor: var(--cursor-default);
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: var(--cursor-activo);
+}

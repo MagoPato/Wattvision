@@ -1,0 +1,79 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: black;
+}
+
+aside {
+  background-color: black;
+  position: fixed;
+}
+
+.nav-item {
+  margin-bottom: 22px;
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    background-color: #f0f0f0;
+  }
+
+  aside {
+    display: none;
+  }
+
+  .navbar-bottom {
+    display: flex;
+  }
+
+  main {
+    margin-left: 0;
+    margin-bottom: 55px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-bottom {
+    display: none;
+  }
+
+  main {
+    margin-left: 145px;
+    margin-bottom: 0;
+  }
+}
+
+main {
+  background-color: #f0f0f0;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  font-size: 130%;
+  font-weight: bold;
+  min-height: calc(100vh - 56px);
+  justify-content: center;
+  align-items: center;
+}
+
+.device-option {
+  margin-top: 3.2%;
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+  background-image: url("../img/Plc.png");
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  background-position: center top;
+  padding-top: 120px;
+  /* Para espacio debajo de la imagen */
+}
+
+.device-option:hover {
+  transform: scale(1.05);
+}

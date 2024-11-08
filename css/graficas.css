@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para la barra de navegación superior en pantallas grandes */
+.navbar {
+    background-color: black;
+    /* Fondo negro para pantallas grandes */
+}
+
+/* Estilo para la barra de navegación lateral */
+aside {
+    background-color: black;
+    /* Fondo negro para el menú lateral */
+    position: fixed;
+}
+
+.nav-item {
+    margin-bottom: 22px;
+    /* Espaciado entre los elementos del menú lateral */
+}
+
+/* Estilo para el menú de navegación superior en móviles */
+@media (max-width: 767px) {
+    .navbar {
+        background-color: #F0F0F0;
+        /* Fondo transparente para el menú superior en móviles */
+    }
+
+    aside {
+        display: none;
+        /* Ocultar menú lateral en dispositivos móviles */
+    }
+
+    .navbar-bottom {
+        display: flex;
+        /* Mostrar la barra de navegación inferior */
+    }
+
+    main {
+        margin-left: 0px;
+        /* Margin izquierdo en móviles */
+        margin-bottom: 55px;
+        /* Espacio para la barra inferior */
+    }
+}
+
+/* Ocultar la barra de navegación inferior en pantallas grandes */
+@media (min-width: 768px) {
+    .navbar-bottom {
+        display: none;
+        /* Ocultar en pantallas grandes */
+    }
+
+    main {
+        margin-left: 145px;
+        /* Margin izquierdo en pantallas grandes */
+        margin-bottom: 0;
+        /* Sin margen inferior en pantallas grandes */
+    }
+}
+
+main {
+    background-color: #F0F0F0;
+    color: white;
+    padding: 20px;
+}
+
+/* Estilo para los widgets de gráficos */
+.widget {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100%;
+    /* Asegurar que el canvas no exceda el contenedor */
+    max-height: 400px;
+    /* Ajusta la altura máxima según sea necesario */
+}
+
+/* Estilo base para Choices.js */
+.choices {
+    border: 1px solid #28A745; /* Color del borde */
+    border-radius: 0.25rem; /* Bordes redondeados */
+    background-color: white; /* Fondo blanco */
+    box-shadow: none; /* Sin sombra */
+    height:45px; /* Altura igual al select original */
+    width: 200px; /* Ancho específico */
+    color: black;
+    
+}
+.choices__inner{
+    padding-bottom: 5px;
+}
+/* Estilo para el contenedor de selección */
+.choices--single .choices__inner {
+    padding: 0.5rem; /* Espaciado interno */
+    border: none; /* Sin borde interno */
+}
+
+/* Color del texto del elemento seleccionado */
+.choices__item--selectable {
+    color: rgb(0, 0, 0); /* Color del texto */
+}
+
+/* Color de fondo y texto al resaltar */
+.choices__item--highlighted {
+    background-color: #28A745; /* Color verde al resaltar */
+    color: white; /* Color del texto al resaltar */
+}
+
+/* Sombra al enfocar */
+.choices:focus {
+    border-color: #28A745; /* Color del borde al enfocar */
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Sombra al enfocar */
+}

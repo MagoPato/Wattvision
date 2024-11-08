@@ -1,0 +1,212 @@
+.sidebar {
+    width: 150px;
+    background-color: #000;
+    height: 100vh;
+    position: fixed;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+.main-content {
+    margin-left: 170px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.status {
+    color: rgb(12, 148, 12);
+    font-size: 200%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.entry-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.navbar {
+    background-color: black;
+}
+
+aside {
+    background-color: black;
+    position: fixed;
+    height: 100vh;
+}
+
+.nav-item {
+    margin-bottom: 22px;
+}
+
+/* Responsividad */
+@media (max-width: 767px) {
+    .navbar {
+        background-color: #F0F0F0;
+    }
+
+    aside {
+        display: none;
+    }
+
+    .navbar-bottom {
+        display: flex;
+    }
+
+    main {
+        margin-left: 0;
+        margin-bottom: 55px;
+    }
+
+    .table-container {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .table {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-bottom {
+        display: none;
+    }
+
+    main {
+        margin-left: 150px;
+        margin-bottom: 0;
+    }
+}
+
+main {
+    background-color: #F0F0F0;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    font-size: 130%;
+    font-weight: bold;
+    min-height: calc(100vh - 56px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0F0F0;
+}
+
+.table-header {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    font-size: 150%;
+    text-align: center;
+}
+
+.table-row {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.btn-period,
+.btn-mensual {
+    background-color: #f8f7dc;
+    color: black;
+    font-weight: bold;
+    border: 1px solid #dedcb9;
+    border-radius: 5px;
+    padding: 1px 5px;
+}
+
+.btn-period:hover,
+.btn-mensual:hover {
+    background-color: #dedcb9;
+}
+
+.estado-consumo {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.table-container {
+    max-width: 900px;
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-x: auto;
+}
+
+/* Estilo base para Choices.js */
+.choices {
+    border: 1px solid #28A745; /* Color del borde */
+    border-radius: 0.25rem; /* Bordes redondeados */
+    background-color: white; /* Fondo blanco */
+    box-shadow: none; /* Sin sombra */
+    height:45px; /* Altura igual al select original */
+    width: 200px; /* Ancho específico */
+    
+}
+.choices__inner{
+    padding-bottom: 5px;
+}
+/* Estilo para el contenedor de selección */
+.choices--single .choices__inner {
+    padding: 0.5rem; /* Espaciado interno */
+    border: none; /* Sin borde interno */
+}
+
+/* Color del texto del elemento seleccionado */
+.choices__item--selectable {
+    color: rgb(0, 0, 0); /* Color del texto */
+}
+
+/* Color de fondo y texto al resaltar */
+.choices__item--highlighted {
+    background-color: #28A745; /* Color verde al resaltar */
+    color: white; /* Color del texto al resaltar */
+}
+
+/* Sombra al enfocar */
+.choices:focus {
+    border-color: #28A745; /* Color del borde al enfocar */
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Sombra al enfocar */
+}

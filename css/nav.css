@@ -1,0 +1,29 @@
+ .logo-img {
+     width: 40px;
+     height: 44px;
+ }
+
+ .logo-text {
+     font-family: 'Arial Rounded MT Bold', sans-serif;
+     font-size: 1.7rem;
+ }
+
+ .menu-img,
+ .icon-img {
+     width: 34px;
+     height: 34px;
+ }
+
+ .nav-icon {
+     width: 33px;
+     height: 33px;
+ }
+
+ .nav-text {
+     font-size: 12px;
+ }
+
+ .sidebar {
+     width: 145px;
+     height: calc(100vh - 56px);
+ }

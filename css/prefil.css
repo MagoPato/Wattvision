@@ -1,0 +1,116 @@
+/* Estilo para la barra de navegación superior en pantallas grandes */
+.navbar {
+  background-color: black;
+}
+
+/* Estilo para la barra de navegación lateral */
+aside {
+  background-color: black;
+  position: fixed;
+}
+
+.nav-item {
+  margin-bottom: 22px;
+}
+
+/* Estilo para el menú de navegación superior en móviles */
+@media (max-width: 767px) {
+  .navbar {
+    background-color: #f0f0f0;
+  }
+
+  aside {
+    display: none;
+  }
+
+  .navbar-bottom {
+    display: flex;
+  }
+
+  main {
+    margin-left: 0px;
+    margin-bottom: 55px;
+  }
+
+  .profile-container {
+    margin-top: AUTO;
+  }
+}
+
+/* Ocultar la barra de navegación inferior en pantallas grandes */
+@media (min-width: 768px) {
+  .navbar-bottom {
+    display: none;
+  }
+
+  main {
+    margin-left: 145px;
+    margin-bottom: 0;
+  }
+
+  .profile-container {
+    margin-top: 70px;
+  }
+}
+
+main {
+  background-color: #f0f0f0;
+  color: white;
+  padding: 20px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.profile-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-container h1 {
+  font-size: 2.5rem;
+  color: black;
+}
+
+.form-group label {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.btn-logout {
+  background-color: #f9e78a;
+  color: black;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: url('../img/Cursor_activo.png"'), auto;
+  /* Cursor personalizado */
+}
+
+.btn-logout:hover {
+  background-color: #f8d86d;
+  cursor: url('../img/Cursor_activo.png"'), auto;
+  /* Cursor personalizado */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+input:focus {
+  outline: none;
+  border-color: #aaa;
+}

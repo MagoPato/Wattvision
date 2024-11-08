@@ -1,0 +1,256 @@
+# ************************************************************
+# Sequel Pro SQL dump
+# Versión 4541
+#
+# http://www.sequelpro.com/
+# https://github.com/sequelpro/sequelpro
+#
+# Host: 127.0.0.1 (MySQL 5.7.39)
+# Base de datos: wattvision
+# Tiempo de Generación: 2024-11-05 18:46:27 +0000
+# ************************************************************
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Volcado de tabla dispositivos
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `dispositivos`;
+
+CREATE TABLE `dispositivos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) DEFAULT NULL,
+  `nombre` varchar(200) DEFAULT NULL,
+  `costo_estimado` decimal(16,2) DEFAULT NULL,
+  `estatus` tinyint(2) DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `dispositivos` WRITE;
+/*!40000 ALTER TABLE `dispositivos` DISABLE KEYS */;
+
+INSERT INTO `dispositivos` (`id`, `usuario_id`, `nombre`, `costo_estimado`, `estatus`, `created_at`, `updated_at`)
+VALUES
+	(1,1,'Dispositivo 1',100.00,1,'2024-11-05 12:38:32','2024-11-05 12:38:32'),
+	(2,1,'Dispositivo 2',150.00,1,'2024-11-05 12:38:45','2024-11-05 12:38:45'),
+	(3,1,'Dispositivo 3',50.00,1,'2024-11-05 12:39:02','2024-11-05 12:39:02');
+
+/*!40000 ALTER TABLE `dispositivos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla entradas_dispositivos
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `entradas_dispositivos`;
+
+CREATE TABLE `entradas_dispositivos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dispositivo_id` int(11) DEFAULT NULL,
+  `entrada` varchar(200) DEFAULT NULL,
+  `estatus` tinyint(2) DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `entradas_dispositivos` WRITE;
+/*!40000 ALTER TABLE `entradas_dispositivos` DISABLE KEYS */;
+
+INSERT INTO `entradas_dispositivos` (`id`, `dispositivo_id`, `entrada`, `estatus`, `created_at`, `updated_at`)
+VALUES
+	(1,1,'Entrada 1',1,'2024-11-05 12:39:25','2024-11-05 12:39:25'),
+	(2,1,'Entrada 2',1,'2024-11-05 12:39:51','2024-11-05 12:39:51'),
+	(3,1,'Entrada 3',1,'2024-11-05 12:39:57','2024-11-05 12:39:57'),
+	(4,1,'Entrada 4',1,'2024-11-05 12:40:04','2024-11-05 12:40:04'),
+	(5,1,'Entrada 5',1,'2024-11-05 12:40:10','2024-11-05 12:40:10'),
+	(6,2,'Entrada 1',1,'2024-11-05 12:40:23','2024-11-05 12:40:23'),
+	(7,2,'Entrada 2',1,'2024-11-05 12:40:32','2024-11-05 12:40:48'),
+	(8,2,'Entrada 3',1,'2024-11-05 12:40:46','2024-11-05 12:40:46'),
+	(9,2,'Entrada 4',1,'2024-11-05 12:40:57','2024-11-05 12:40:57'),
+	(10,3,'Entrada 1',1,'2024-11-05 12:41:05','2024-11-05 12:41:05'),
+	(11,3,'Entrada 2',1,'2024-11-05 12:41:15','2024-11-05 12:41:15'),
+	(12,3,'Entrada 3',1,'2024-11-05 12:41:21','2024-11-05 12:41:21'),
+	(13,3,'Entrada 4',1,'2024-11-05 12:41:28','2024-11-05 12:41:28'),
+	(14,3,'Entrada 5',1,'2024-11-05 12:41:33','2024-11-05 12:41:33'),
+	(15,3,'Entrada 6',1,'2024-11-05 12:41:38','2024-11-05 12:41:38'),
+	(16,3,'Entrada 7',1,'2024-11-05 12:41:48','2024-11-05 12:41:48'),
+	(17,3,'Entrada 8',1,'2024-11-05 12:41:53','2024-11-05 12:42:49');
+
+/*!40000 ALTER TABLE `entradas_dispositivos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla estados_consumo
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `estados_consumo`;
+
+CREATE TABLE `estados_consumo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) DEFAULT NULL,
+  `consumo` decimal(16,2) DEFAULT NULL,
+  `costo` decimal(16,2) DEFAULT NULL,
+  `mes_id` int(11) DEFAULT NULL,
+  `anio` int(11) DEFAULT NULL,
+  `estatus` tinyint(2) DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `estados_consumo` WRITE;
+/*!40000 ALTER TABLE `estados_consumo` DISABLE KEYS */;
+
+INSERT INTO `estados_consumo` (`id`, `usuario_id`, `consumo`, `costo`, `mes_id`, `anio`, `estatus`, `created_at`, `updated_at`)
+VALUES
+	(1,1,240.00,180.00,1,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(2,1,270.00,202.50,2,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(3,1,290.00,217.50,3,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(4,1,360.00,270.00,4,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(5,1,490.00,367.50,5,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(6,1,620.00,465.00,6,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(7,1,910.00,682.50,7,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(8,1,1060.00,795.00,8,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(9,1,740.00,555.00,9,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(10,1,440.00,330.00,10,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(11,1,290.00,217.50,11,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(12,1,130.00,97.50,12,2019,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(13,1,250.00,187.50,1,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(14,1,280.00,210.00,2,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(15,1,300.00,225.00,3,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(16,1,370.00,277.50,4,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(17,1,500.00,375.00,5,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(18,1,630.00,472.50,6,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(19,1,930.00,697.50,7,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(20,1,1080.00,810.00,8,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(21,1,750.00,562.50,9,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(22,1,450.00,337.50,10,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(23,1,300.00,225.00,11,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(24,1,140.00,105.00,12,2020,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(25,1,268.00,201.00,1,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(26,1,300.00,225.00,2,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(27,1,320.00,240.00,3,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(28,1,373.00,279.75,4,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(29,1,523.00,392.25,5,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(30,1,654.00,490.50,6,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(31,1,966.00,724.50,7,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(32,1,1094.00,820.50,8,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(33,1,768.00,576.00,9,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(34,1,467.00,350.25,10,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(35,1,311.00,233.25,11,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(36,1,150.00,112.50,12,2021,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(37,1,210.00,157.50,1,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(38,1,285.00,213.75,2,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(39,1,390.00,292.50,3,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(40,1,423.00,317.25,4,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(41,1,600.00,450.00,5,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(42,1,750.00,562.50,6,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(43,1,1001.00,750.75,7,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(44,1,1568.00,1176.00,8,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(45,1,1145.00,858.75,9,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(46,1,750.00,562.50,10,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(47,1,433.00,324.75,11,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(48,1,178.00,133.50,12,2022,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(49,1,190.00,142.50,1,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(50,1,287.00,215.25,2,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(51,1,401.00,300.75,3,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(52,1,467.00,350.25,4,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(53,1,590.00,442.50,5,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(54,1,699.00,524.25,6,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(55,1,896.00,672.00,7,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(56,1,1218.00,913.50,8,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(57,1,989.00,741.75,9,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(58,1,704.00,528.00,10,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(59,1,456.00,342.00,11,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(60,1,100.00,75.00,12,2023,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(61,1,205.00,153.75,1,2024,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(62,1,314.00,235.50,2,2024,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(63,1,386.00,289.50,3,2024,1,'2024-11-05 12:37:20','2024-11-05 12:37:20'),
+	(64,1,459.00,344.25,4,2024,1,'2024-11-05 12:37:20','2024-11-05 12:37:20');
+
+/*!40000 ALTER TABLE `estados_consumo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla meses
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `meses`;
+
+CREATE TABLE `meses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) DEFAULT NULL,
+  `abreviado` varchar(50) DEFAULT NULL,
+  `estatus` tinyint(2) DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `meses` WRITE;
+/*!40000 ALTER TABLE `meses` DISABLE KEYS */;
+
+INSERT INTO `meses` (`id`, `nombre`, `abreviado`, `estatus`, `created_at`, `updated_at`)
+VALUES
+	(1,'Enero','Ene',1,'2024-11-05 12:15:33','2024-11-05 12:15:53'),
+	(2,'Febrero','Feb',1,'2024-11-05 12:16:05','2024-11-05 12:16:05'),
+	(3,'Marzo','Mar',1,'2024-11-05 12:16:33','2024-11-05 12:16:33'),
+	(4,'Abril','Abr',1,'2024-11-05 12:16:40','2024-11-05 12:17:41'),
+	(5,'Mayo','May',1,'2024-11-05 12:16:46','2024-11-05 12:17:39'),
+	(6,'Junio','Jun',1,'2024-11-05 12:16:52','2024-11-05 12:17:46'),
+	(7,'Julio','Jul',1,'2024-11-05 12:17:06','2024-11-05 12:17:53'),
+	(8,'Agosto','Ago',1,'2024-11-05 12:17:12','2024-11-05 12:17:58'),
+	(9,'Septiembre','Sep',1,'2024-11-05 12:17:19','2024-11-05 12:18:05'),
+	(10,'Octubre','Oct',1,'2024-11-05 12:17:24','2024-11-05 12:18:10'),
+	(11,'Noviembre','Nov',1,'2024-11-05 12:17:35','2024-11-05 12:18:14'),
+	(12,'Diciembre','Dic',1,'2024-11-05 12:18:24','2024-11-05 12:18:24');
+
+/*!40000 ALTER TABLE `meses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Volcado de tabla users
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `estatus` tinyint(2) DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+
+INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `estatus`, `created_at`, `updated_at`)
+VALUES
+	(1,'Pato','pato@gmail.com','25f9e794323b453885f5181f1b624d0b',1,'2024-11-05 12:21:20','2024-11-05 12:21:20');
+
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
