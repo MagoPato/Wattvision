@@ -70,10 +70,16 @@ aside {
 }
 
 /* Responsividad */
-@media (max-width: 767px) {
+@media (max-width: 790px) {
   .navbar {
     background-color: #f0f0f0;
   }
+
+@media (max-width: 576px) {
+    .table-container {
+        font-size: 0.8rem; /* Ajuste de tamaño de fuente para tablas */
+    }
+}
 
   aside {
     display: none;
@@ -191,3 +197,18 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 576px) {
+  .card-body {
+    padding: 8px; /* Reducir el padding en dispositivos móviles */
+  }
+
+  .title {
+    font-size: 12px; /* Reducir el tamaño de la fuente para pantallas móviles */
+  }
+
+  .container img {
+    width: 150%; /* Aumentar el tamaño de la imagen ligeramente en pantallas móviles */
+  }
+}
+
