@@ -4,7 +4,7 @@ include '../php/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener datos del formulario
-    $nombre = trim($_POST['usuario']); // Cambié 'usuario' a 'nombre' para que coincida con la tabla
+    $nombre = trim($_POST['usuario']); // Campo 'usuario' en el formulario
     $email = trim($_POST['correo']);
     $password = trim($_POST['password']);
 
@@ -14,8 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Cifrar la contraseña
-    $password_hash = md5($password); // Cambia a password_hash() si decides usar un método más seguro.
+    // Validar formato de correo electrónico
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Correo electrónico no válido.";
+        exit;
+    }
+
+    // Cifrar la contraseña con md5
+    $password_hash = md5($password);
 
     // Preparar la consulta SQL
     $sql = "INSERT INTO users (nombre, email, password) VALUES (?, ?, ?)";
@@ -25,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Ejecutar la consulta y verificar si fue exitosa
         if ($stmt->execute()) {
-            // Registro exitoso
-            echo "Registro exitoso. Puedes iniciar sesión ahora.";
-            header("Location: ../index.php"); // Redirigir a la página de inicio de sesión
+            // Registro exitoso, redirigir a la página de inicio de sesión con mensaje de éxito
+            $_SESSION['success'] = "Registro exitoso. Puedes iniciar sesión ahora.";
+            header("Location: ../index.php");
             exit;
         } else {
             // Ocurrió un error
