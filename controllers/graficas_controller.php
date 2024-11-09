@@ -1,10 +1,6 @@
 <?php
 
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../index.php"); // Redirigir al login si no está autenticado
-    exit();
-}
+require_once '../php/security.php'; // Si la ruta es correcta
 include '../php/db.php'; // Archivo para la conexión a la base de datos
 
 $anio = isset($_POST['anio']) ? $_POST['anio'] : null;

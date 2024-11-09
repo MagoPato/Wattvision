@@ -1,11 +1,6 @@
 <?php
-session_start();
+require_once '../php/security.php'; // Si la ruta es correcta
 include '../php/db.php'; // Asegúrate de incluir la conexión a la base de datos
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../index.php");
-    exit();
-}
 
 $year = $_GET['year'] ?? null;
 if ($year) {

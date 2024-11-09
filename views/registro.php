@@ -15,7 +15,7 @@
     <!-- Contenedor del Logo y el texto -->
     <div class="logo-container">
         <img src="../img/logo.png" alt="Wattvision Logo">
-        <div class="logo-text">WattVision</div>
+        <div class="logo-text">WATTVISION</div>
     </div>
 
     <!-- Contenedor del Login -->
@@ -29,7 +29,7 @@
                 <input type="email" name="correo" class="form-control" placeholder="Correo Electrónico" required>
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                <input type="password" name="password" class="form-control" placeholder="Contraseña">
             </div>
             <button type="submit">Registrarse</button>
             <div class="mt-3">

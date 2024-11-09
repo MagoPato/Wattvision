@@ -1,15 +1,7 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../index.php"); // Redirigir al login si no está autenticado
-    exit();
-}
+require_once '../php/security.php'; // Si la ruta es correcta
 include '../controllers/select_años.php';
-
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -61,7 +53,6 @@ include '../controllers/select_años.php';
                                 echo "<option value='' disabled>No hay datos de consumo disponibles</option>";
                             }
                             ?>
-
                         </select>
                     </div>
                     <canvas id="chart3"></canvas>

@@ -1,5 +1,5 @@
 <?php
-
+require_once '../php/security.php'; // Si la ruta es correcta
 require_once '../php/db.php'; // Conectar a la base de datos
 
 // Verificar si el usuario está autenticado

@@ -1,5 +1,6 @@
 <?php
 // Incluir archivo de conexión a la base de datos
+require_once '../php/security.php'; // Si la ruta es correcta
 include '../php/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -1,6 +1,6 @@
 <?php
 // Obtiene el nombre del archivo actual
-$page = basename($_SERVER['PHP_SELF']);
+$page = htmlspecialchars(basename($_SERVER['PHP_SELF']));
 
 // Imágenes por defecto
 $iconoGraficaImagen = "../img/icon-Grafica.png"; // Cambia a ../

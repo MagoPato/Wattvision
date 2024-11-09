@@ -186,9 +186,3 @@ body {
   word-wrap: break-word; /* Permite que el texto se ajuste a múltiples líneas */
   white-space: normal; /* Evita que el contenido se mantenga en una sola línea */
 }
-
-  .container img {
-    width: 150%; /* Aumentar el tamaño de la imagen ligeramente en pantallas móviles */
-  }
-}
-
