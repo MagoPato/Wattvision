@@ -34,42 +34,33 @@ function fetchConsumptionData(year) {
     type: "GET",
     dataType: "json",
     success: function (data) {
-      // Obtener el número actual de filas en la tabla
-      const currentRows = tableBody.getElementsByClassName("table-row");
+      const rows = tableBody.getElementsByClassName("table-row");
 
       if (data.length) {
-        // Eliminar las filas adicionales si hay menos datos
-        while (currentRows.length > data.length) {
-          tableBody.removeChild(currentRows[currentRows.length - 1]);
+        // Asegurar que haya suficientes filas para los datos
+        while (rows.length < data.length) {
+          const row = document.createElement("tr");
+          row.className = "table-row";
+          row.innerHTML = `<td>-</td><td>-</td><td>-</td>`;
+          tableBody.appendChild(row);
         }
 
-        // Agregar nuevas filas si hay más datos
+        // Actualizar filas existentes con los datos obtenidos
         data.forEach((row, index) => {
-          if (currentRows[index]) {
-            // Si ya existe una fila, solo actualiza el contenido
-            currentRows[index].innerHTML = `
-              <td>${row.mes}</td>
-              <td>${row.consumo} kWh</td>
-              <td>$${parseFloat(row.costo).toLocaleString("en-US", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}  MXN</td>
-            `;
-          } else {
-            // Si no existe una fila, crea una nueva
-            const tableRow = document.createElement("tr");
-            tableRow.className = "table-row";
-            tableRow.innerHTML = `
-              <td>${row.mes}</td>
-              <td>${row.consumo} kWh</td>
-              <td>$${parseFloat(row.costo).toLocaleString("en-US", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}  MXN</td>
-            `;
-            tableBody.appendChild(tableRow);
-          }
+          rows[index].innerHTML = `
+            <td>${row.mes}</td>
+            <td>${row.consumo} kWh</td>
+            <td>$${parseFloat(row.costo).toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}  MXN</td>
+          `;
         });
+
+        // Eliminar filas sobrantes si hay más filas que datos
+        while (rows.length > data.length) {
+          tableBody.removeChild(rows[rows.length - 1]);
+        }
       } else {
         // Si no hay datos, mostrar filas vacías
         showEmptyRows();
@@ -89,7 +80,7 @@ function showEmptyRows() {
 
   // Limpiar las filas existentes
   const rows = tableBody.getElementsByClassName("table-row");
-  for (let i = 0; i < rows.length; i++) {
+  for (let i = rows.length - 1; i >= 0; i--) {
     tableBody.removeChild(rows[i]);
   }
 
@@ -97,11 +88,7 @@ function showEmptyRows() {
   for (let i = 0; i < 5; i++) {
     const row = document.createElement("tr");
     row.className = "table-row";
-    row.innerHTML = `
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        `;
+    row.innerHTML = `<td>-</td><td>-</td><td>-</td>`;
     tableBody.appendChild(row);
   }
 }
