@@ -2,26 +2,32 @@
 // Obtiene el nombre del archivo actual
 $page = htmlspecialchars(basename($_SERVER['PHP_SELF']));
 
+// Genera una URL con el timestamp del archivo para evitar problemas de caché
+function imgWithVersion($path)
+{
+    return $path . '?v=' . filemtime($path);
+}
+
 // Imágenes por defecto
-$iconoGraficaImagen = "../img/icon-Grafica.png"; // Cambia a ../
-$iconoDatosImagen = "../img/icon-Datos.png"; // Cambia a ../
-$iconoInicioImagen = "../img/icon-Inicio.png"; // Cambia a ../
-$iconoInforme = "../img/informacion.png"; // Cambia a
-$iconoPerfil = "../img/perfil_web.png";
-$iconoPerfil_movil = "../img/perfil_movil.png";
+$iconoGraficaImagen = imgWithVersion("../img/icon-Grafica.png");
+$iconoDatosImagen = imgWithVersion("../img/icon-Datos.png");
+$iconoInicioImagen = imgWithVersion("../img/icon-Inicio.png");
+$iconoInforme = imgWithVersion("../img/informacion.png");
+$iconoPerfil = imgWithVersion("../img/perfil_web.png");
+$iconoPerfil_movil = imgWithVersion("../img/perfil_movil.png");
 
 // Cambia las imágenes según la página actual
 if ($page == "inicio.php") {
-    $iconoInicioImagen = "../img/icon-inicio-activo.png"; // Cambia a ../
+    $iconoInicioImagen = imgWithVersion("../img/icon-inicio-activo.png");
 } elseif ($page == "Graficas.php") {
-    $iconoGraficaImagen = "../img/icon-Grafica-activo.png"; // Cambia a ../
+    $iconoGraficaImagen = imgWithVersion("../img/icon-Grafica-activo.png");
 } elseif ($page == "datos.php") {
-    $iconoDatosImagen = "../img/icon-datos-activo.png"; // Cambia a ../
+    $iconoDatosImagen = imgWithVersion("../img/icon-datos-activo.png");
 } elseif ($page == "ayuda.php") {
-    $iconoInforme = "../img/informacion_activo.png";
+    $iconoInforme = imgWithVersion("../img/informacion_activo.png");
 } elseif ($page == "perfil.php") {
-    $iconoPerfil = "../img/perfil_activo.png";
-    $iconoPerfil_movil = "../img/perfil_activo.png";
+    $iconoPerfil = imgWithVersion("../img/perfil_activo.png"); //version web
+    $iconoPerfil_movil = imgWithVersion("../img/perfil_activo.png"); //version movil
 }
 
 $navClassInicio = $page == "inicio.php" ? "#" : "../views/inicio.php";
@@ -65,7 +71,7 @@ $navClassAyuda = $page == "ayuda.php" ? "#" : "../views/ayuda.php";
         <li class="nav-item">
             <a class="nav-link text-white d-flex flex-column align-items-center" href="<?php echo $navClassInicio; ?>"
                 style="padding: 0;">
-                <img src="<?php echo $iconoInicioImagen; ?>" alt="Inicio" style="width: 38px; height: 38px;">
+                <img src="<?php echo $iconoInicioImagen; ?>" alt="Inicio" style="width: 33px; height: 33px;">
                 <span class="mt-1" style="font-size: 12px;">Inicio</span>
             </a>
         </li>
