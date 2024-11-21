@@ -8,6 +8,7 @@ include '../controllers/select_años.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora las gráficas interactivas de consumo energético en Wattvision. Selecciona un año para visualizar estadísticas de consumo y obtener un análisis visual detallado.">
     <title>Navegación con Bootstrap 4</title>
     <!-- CSS de Bootstrap -->
     <?php include '../partials/header.php'; ?>
@@ -42,10 +43,16 @@ include '../controllers/select_años.php';
                         <h2>Gráfica 3</h2>
                         <!-- Selector de año -->
                         <select id="yearSelect" class="form-control mb-2" style="width: 200px;">
+
                             <option value="" disabled selected>Seleccione un año</option>
                             <?php
                             // Si hay años en la base de datos, se generan las opciones
                             if (!empty($years)) {
+                                // Si hay más de 2 años, agregamos la opción "Todos"
+                                if (count($years) > 2) {
+                                    echo "<option value='todos'>Años</option>"; // Aquí agregamos la opción "Todos"
+                                }
+
                                 foreach ($years as $year) {
                                     echo "<option value=\"{$year['anio']}\">{$year['anio']}</option>";
                                 }
@@ -53,6 +60,7 @@ include '../controllers/select_años.php';
                                 echo "<option value='' disabled>No hay datos de consumo disponibles</option>";
                             }
                             ?>
+
                         </select>
                     </div>
                     <canvas id="chart3"></canvas>
@@ -67,11 +75,9 @@ include '../controllers/select_años.php';
 
     <!-- JS de Bootstrap y Chart.js para las gráficas -->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/graficas.js"></script>
 
 </body>

@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const choices = new Choices("#yearSelect", {
     searchEnabled: false, // Desactiva la búsqueda si no es necesaria
     placeholder: true, //
-    placeholderValue: "Año",
-    itemSelectText: "",
+    placeholderValue: "Seleccione un año",
+    itemSelectText: "Seleccione",
     noChoicesText: "Sin Datos",
     noResultsText: "No hay opciones disponibles",
   });
@@ -36,31 +36,67 @@ var chart1 = new Chart(ctx1, {
       {
         label: "Consumo Eléctrico en Tiempo Real",
         data: new Array(labels.length).fill(null), // Inicialmente llena con null
-        backgroundColor: "rgba(40, 167, 69, 0.6)",
+        backgroundColor: function (context) {
+          // Crear un degradado con más variedad de tonos
+          var gradient = ctx1.createLinearGradient(
+            0,
+            0,
+            0,
+            context.chart.height
+          );
+
+          // Definir colores más ricos en el gradiente
+          gradient.addColorStop(0, "rgba(40, 167, 69, 0.8)"); // Verde fuerte y saturado al principio
+          gradient.addColorStop(0.25, "rgba(40, 167, 69, 0.6)"); // Transición suave hacia opacidad media
+          gradient.addColorStop(0.5, "rgba(60, 179, 113, 0.4)"); // Verde un poco más suave y fresco
+          gradient.addColorStop(0.75, "rgba(70, 190, 130, 0.2)"); // Verde más claro, más opaco
+          gradient.addColorStop(1, "rgba(144, 238, 144, 0.1)"); // Un verde muy claro y casi transparente
+
+          return gradient;
+        }, // Fondo más suave
         borderColor: "#28A745",
-        borderWidth: 2,
-        fill: false, // No llenar el área bajo la línea
+        borderWidth: 3,
+        fill: true, // Llenar el área bajo la línea con un color suave
         pointBackgroundColor: "#ffffff", // Puntos en blanco
+        pointBorderColor: "#28A745", // Bordes de los puntos en verde
+        pointBorderWidth: 3,
+        pointRadius: 5, // Tamaño de los puntos más grande
+        hoverRadius: 7, // Tamaño al hacer hover sobre los puntos
+        hoverBackgroundColor: "#28A745", // Color al pasar el mouse
+        hoverBorderColor: "#fff", // Color de borde al hacer hover
+        hoverBorderWidth: 2, // Borde más grueso al hacer hover
       },
     ],
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    animation: {
+      duration: 1000, // Duración de la animación
+      easing: "easeInOutQuad", // Efecto de animación más suave
+    },
     plugins: {
       legend: {
         display: true,
+        position: "top",
         labels: {
           color: "#333",
           font: {
-            size: 15,
+            size: 14, // Aumenta el tamaño de la fuente para mayor claridad
+            weight: "bold",
           },
         },
       },
       tooltip: {
-        backgroundColor: "rgba(40, 167, 69, 0.8)",
+        backgroundColor: "rgba(40, 167, 69, 0.9)", // Fondo más opaco para el tooltip
         titleColor: "#fff",
         bodyColor: "#fff",
+        bodyFont: {
+          size: 16, // Mayor tamaño de fuente para el cuerpo del tooltip
+        },
+        cornerRadius: 10, // Bordes más redondeados
+        padding: 12, // Más espacio dentro del tooltip
+        displayColors: false, // Eliminar el color de la leyenda en los tooltips
       },
     },
     scales: {
@@ -69,15 +105,44 @@ var chart1 = new Chart(ctx1, {
         title: {
           display: true,
           text: "Consumo (kWh)",
+          color: "#28A745", // Color verde para el título del eje Y
+          font: {
+            size: 16, // Aumenta el tamaño de la fuente
+            weight: "bold",
+          },
+        },
+        grid: {
+          color: "#f2f2f2", // Color más suave para las líneas de la cuadrícula
+          borderDash: [5, 5], // Estilo punteado para hacer las líneas menos dominantes
+          drawBorder: false, // Quita el borde alrededor del eje y
+        },
+        ticks: {
+          color: "#333", // Color de los ticks (marcas de escala)
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
       },
       x: {
         grid: {
-          display: false,
+          display: false, // No mostrar las líneas de la cuadrícula en el eje X
         },
         title: {
           display: true,
           text: "Tiempo",
+          color: "#28A745", // Color verde para el título del eje X
+          font: {
+            size: 16,
+            weight: "bold",
+          },
+        },
+        ticks: {
+          color: "#333", // Color de los ticks (marcas de escala)
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
       },
     },
@@ -179,33 +244,49 @@ var chart2 = new Chart(ctx2, {
     labels: labels,
     datasets: [
       {
-        label: "Costo Electrico en Tiempo Real",
+        label: "Costo Eléctrico en Tiempo Real",
         data: new Array(labels.length).fill(0), // Inicialmente llena con 0
         backgroundColor: "rgba(40, 167, 69, 0.6)",
         borderColor: "#28A745",
-        borderWidth: 1,
-        borderRadius: 5, // Bordes redondeados
+        borderWidth: 2,
+        borderRadius: 6, // Bordes redondeados más pronunciados
         barPercentage: 0.8,
+        hoverBackgroundColor: "rgba(40, 167, 69, 0.8)", // Color más intenso al hacer hover
+        hoverBorderColor: "#28A745", // Borde verde al pasar el mouse
+        hoverBorderWidth: 3, // Borde más grueso al hacer hover
+        tension: 0.2, // Suaviza la animación para el gráfico de barras
       },
     ],
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    animation: {
+      duration: 800, // Animación más rápida para una carga más ágil
+      easing: "easeInOutQuart", // Efecto de animación más fluido
+    },
     plugins: {
       legend: {
         display: true,
+        position: "top",
         labels: {
           color: "#333",
           font: {
-            size: 15,
+            size: 14,
+            weight: "bold", // Texto en negrita para mejor visibilidad
           },
         },
       },
       tooltip: {
-        backgroundColor: "rgba(40, 167, 69, 0.8)",
+        backgroundColor: "rgba(40, 167, 69, 0.9)", // Fondo más opaco para el tooltip
         titleColor: "#fff",
         bodyColor: "#fff",
+        bodyFont: {
+          size: 16, // Aumenta el tamaño de la fuente para el cuerpo del tooltip
+        },
+        cornerRadius: 8, // Bordes redondeados en los tooltips
+        padding: 12, // Aumenta el espacio dentro del tooltip
+        displayColors: false, // Eliminar color de la leyenda en los tooltips
       },
     },
     scales: {
@@ -214,25 +295,94 @@ var chart2 = new Chart(ctx2, {
         title: {
           display: true,
           text: "Costo (MXN)",
+          color: "#28A745", // Título del eje Y en verde
+          font: {
+            size: 16, // Aumenta el tamaño de la fuente para el título del eje Y
+            weight: "bold",
+          },
+        },
+        grid: {
+          color: "#f2f2f2", // Color suave para las líneas de la cuadrícula
+          lineWidth: 1,
+          borderDash: [5, 5], // Líneas discontinuas en la cuadrícula
+        },
+        ticks: {
+          color: "#333", // Color para los ticks
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
       },
       x: {
         grid: {
-          display: false,
+          display: false, // No mostrar las líneas de la cuadrícula en el eje X
         },
         title: {
           display: true,
           text: "Tiempo",
+          color: "#28A745", // Título del eje X en verde
+          font: {
+            size: 16,
+            weight: "bold",
+          },
+        },
+        ticks: {
+          color: "#333", // Color para los ticks
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
       },
     },
   },
 });
+
+var años = false;
 document.getElementById("yearSelect").addEventListener("change", function () {
   const selectedYear = this.value;
 
-  // Asegúrate de que el año seleccionado no esté vacío
-  if (selectedYear) {
+  // Si se selecciona "todo"
+  if (selectedYear === "todos") {
+    años = true;
+    if (años) {
+      chart3.options.scales.x.title.text = "Años";
+      chart3.data.datasets[0].label = "Consumo Eléctrico por Años";
+    }
+
+    $.ajax({
+      url: "../controllers/graficas_controller.php",
+      type: "POST",
+      data: {
+        anio: "todos", // O puedes omitir el valor si el backend lo maneja diferente
+      },
+      dataType: "json",
+      success: function (response) {
+        if (response.meses && response.consumo && response.anios) {
+          // Concatenar meses y años para las etiquetas
+          chart3.data.labels = response.meses.map(
+            (mes, index) => `${mes} ${response.anios[index]}`
+          );
+          chart3.data.datasets[0].data = response.consumo;
+          chart3.update();
+        } else {
+          console.error("Respuesta inesperada: ", response);
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error en la solicitud AJAX:", error);
+        console.log("Respuesta del servidor:", xhr.responseText);
+      },
+    });
+  } else if (selectedYear) {
+    años = false;
+    if (!años) {
+      chart3.options.scales.x.title.text = "Meses";
+      chart3.data.datasets[0].label = "Consumo Eléctrico por Meses";
+    }
+
+    // Si se selecciona un año específico
     $.ajax({
       url: "../controllers/graficas_controller.php",
       type: "POST",
@@ -267,41 +417,95 @@ var chart3 = new Chart(ctx3, {
     labels: [], // Las etiquetas se actualizarán con los meses
     datasets: [
       {
-        label: "Consumo Eléctrico por Mes",
+        label: "Consumo Eléctrico por Meses",
         data: [], // Los datos se actualizarán con el consumo
-        backgroundColor: "rgba(40, 167, 69, 0.6)",
+        backgroundColor: function (context) {
+          // Crear un degradado con más variedad de tonos
+          var gradient = ctx1.createLinearGradient(
+            0,
+            0,
+            0,
+            context.chart.height
+          );
+
+          // Definir colores más ricos en el gradiente
+          gradient.addColorStop(0, "rgba(40, 167, 69, 0.8)"); // Verde fuerte y saturado al principio
+          gradient.addColorStop(0.25, "rgba(40, 167, 69, 0.6)"); // Transición suave hacia opacidad media
+          gradient.addColorStop(0.5, "rgba(60, 179, 113, 0.4)"); // Verde un poco más suave y fresco
+          gradient.addColorStop(0.75, "rgba(70, 190, 130, 0.2)"); // Verde más claro, más opaco
+          gradient.addColorStop(1, "rgba(144, 238, 144, 0.1)"); // Un verde muy claro y casi transparente
+
+          return gradient;
+        }, // Fondo más suave
         borderColor: "#28A745",
-        borderWidth: 2,
-        fill: false, // No llenar el área bajo la línea
+        borderWidth: 3,
+        fill: true, // Llenar el área bajo la línea con un color suave
         pointBackgroundColor: "#ffffff", // Puntos en blanco
+        pointBorderColor: "#28A745", // Bordes de los puntos en verde
+        pointBorderWidth: 3,
+        pointRadius: 5, // Tamaño de los puntos más grande
+        hoverRadius: 7, // Tamaño al hacer hover sobre los puntos
+        hoverBackgroundColor: "#28A745", // Color al pasar el mouse
+        hoverBorderColor: "#fff", // Color de borde al hacer hover
+        hoverBorderWidth: 2, // Borde más grueso al hacer hover
       },
     ],
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    animation: {
+      duration: 1000, // Duración de la animación
+      easing: "easeInOutQuad", // Efecto de animación más suave
+    },
     plugins: {
       legend: {
         display: true,
+        position: "top", // Colocar la leyenda en la parte superior
         labels: {
-          color: "#333",
+          color: "#333", // Color de las etiquetas de la leyenda
           font: {
-            size: 15,
+            size: 14, // Tamaño de la fuente más grande
+            weight: "bold", // Fuente en negrita
           },
         },
       },
       tooltip: {
-        backgroundColor: "rgba(40, 167, 69, 0.8)",
-        titleColor: "#fff",
-        bodyColor: "#fff",
+        backgroundColor: "rgba(40, 167, 69, 0.9)", // Fondo del tooltip más opaco
+        titleColor: "#fff", // Color del título del tooltip
+        bodyColor: "#fff", // Color del cuerpo del tooltip
+        bodyFont: {
+          size: 16, // Tamaño de la fuente en el cuerpo del tooltip
+        },
+        cornerRadius: 8, // Bordes redondeados en el tooltip
+        padding: 12, // Más espacio dentro del tooltip
+        displayColors: false, // Eliminar los colores de la leyenda en los tooltips
       },
     },
     scales: {
       y: {
         beginAtZero: true,
+        position: "left",
         title: {
           display: true,
           text: "Consumo (kWh)",
+          color: "#28A745", // Título del eje Y en verde
+          font: {
+            size: 16, // Tamaño de la fuente para el título del eje Y
+            weight: "bold", // En negrita
+          },
+        },
+        grid: {
+          color: "#f2f2f2", // Líneas de cuadrícula suaves
+          borderDash: [5, 5], // Estilo punteado para hacer las líneas menos dominantes
+          drawBorder: false, // Quita el borde alrededor del eje y
+        },
+        ticks: {
+          color: "#333", // Color de los ticks
+          font: {
+            size: 14, // Tamaño de la fuente de los ticks
+            weight: "bold",
+          },
         },
       },
       x: {
@@ -310,7 +514,38 @@ var chart3 = new Chart(ctx3, {
         },
         title: {
           display: true,
-          text: "Mes",
+          text: "Meses",
+          color: "#28A745", // Título del eje X en verde
+          font: {
+            size: 16, // Tamaño de la fuente para el título del eje X
+            weight: "bold", // En negrita
+          },
+        },
+        ticks: {
+          callback: function (value, index, values) {
+            if (años) {
+              const label = this.getLabelForValue(value);
+              const year = label.split(" ")[1]; // Extrae el año de la etiqueta.
+              const previousLabel =
+                index > 0 ? this.getLabelForValue(index - 1) : null;
+              const previousYear = previousLabel
+                ? previousLabel.split(" ")[1]
+                : null;
+
+              // Solo muestra el año si es diferente al del índice anterior.
+              if (year !== previousYear) {
+                return year;
+              }
+              return ""; // Si es el mismo año, no muestra nada.
+            } else {
+              return this.getLabelForValue(value);
+            }
+          },
+          color: "#333", // Color de los ticks
+          font: {
+            size: 14, // Tamaño de la fuente de los ticks
+            weight: "bold",
+          },
         },
       },
     },

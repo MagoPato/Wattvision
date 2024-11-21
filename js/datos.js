@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     searchEnabled: false,
     placeholder: true,
     placeholderValue: "Seleccione un año",
-    itemSelectText: "",
+    itemSelectText: "Seleccione",
     noChoicesText: "Sin Datos",
     noResultsText: "No hay opciones disponibles",
   });
@@ -28,26 +28,70 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to fetch and display consumption data for a selected year
 function fetchConsumptionData(year) {
   const tableBody = document.getElementById("tableBody");
+  if (year === "todos") {
+    $.ajax({
+      url: `../controllers/datos_controller?year=${year}`,
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        const rows = tableBody.getElementsByClassName("table-row");
 
-  $.ajax({
-    url: `../controllers/datos_controller.php?year=${year}`,
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      const rows = tableBody.getElementsByClassName("table-row");
+        if (data.length) {
+          // Asegurar que haya suficientes filas para los datos
+          while (rows.length < data.length) {
+            const row = document.createElement("tr");
+            row.className = "table-row";
+            row.innerHTML = `<td>-</td><td>-</td><td>-</td>`;
+            tableBody.appendChild(row);
+          }
 
-      if (data.length) {
-        // Asegurar que haya suficientes filas para los datos
-        while (rows.length < data.length) {
-          const row = document.createElement("tr");
-          row.className = "table-row";
-          row.innerHTML = `<td>-</td><td>-</td><td>-</td>`;
-          tableBody.appendChild(row);
+          // Actualizar filas existentes con los datos obtenidos
+          data.forEach((row, index) => {
+            rows[index].innerHTML = `
+            <td>${row.mes} ${row.anio}</td>
+            <td>${row.consumo} kWh</td>
+            <td>$${parseFloat(row.costo).toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}  MXN</td>
+          `;
+          });
+
+          // Eliminar filas sobrantes si hay más filas que datos
+          while (rows.length > data.length) {
+            tableBody.removeChild(rows[rows.length - 1]);
+          }
+        } else {
+          // Si no hay datos, mostrar filas vacías
+          showEmptyRows();
         }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error fetching data:", error);
+        tableBody.innerHTML =
+          '<tr><td colspan="3">Error al cargar los datos</td></tr>';
+      },
+    });
+  } else if (year) {
+    $.ajax({
+      url: `../controllers/datos_controller?year=${year}`,
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        const rows = tableBody.getElementsByClassName("table-row");
 
-        // Actualizar filas existentes con los datos obtenidos
-        data.forEach((row, index) => {
-          rows[index].innerHTML = `
+        if (data.length) {
+          // Asegurar que haya suficientes filas para los datos
+          while (rows.length < data.length) {
+            const row = document.createElement("tr");
+            row.className = "table-row";
+            row.innerHTML = `<td>-</td><td>-</td><td>-</td>`;
+            tableBody.appendChild(row);
+          }
+
+          // Actualizar filas existentes con los datos obtenidos
+          data.forEach((row, index) => {
+            rows[index].innerHTML = `
             <td>${row.mes}</td>
             <td>${row.consumo} kWh</td>
             <td>$${parseFloat(row.costo).toLocaleString("en-US", {
@@ -55,23 +99,24 @@ function fetchConsumptionData(year) {
               maximumFractionDigits: 2,
             })}  MXN</td>
           `;
-        });
+          });
 
-        // Eliminar filas sobrantes si hay más filas que datos
-        while (rows.length > data.length) {
-          tableBody.removeChild(rows[rows.length - 1]);
+          // Eliminar filas sobrantes si hay más filas que datos
+          while (rows.length > data.length) {
+            tableBody.removeChild(rows[rows.length - 1]);
+          }
+        } else {
+          // Si no hay datos, mostrar filas vacías
+          showEmptyRows();
         }
-      } else {
-        // Si no hay datos, mostrar filas vacías
-        showEmptyRows();
-      }
-    },
-    error: function (xhr, status, error) {
-      console.error("Error fetching data:", error);
-      tableBody.innerHTML =
-        '<tr><td colspan="3">Error al cargar los datos</td></tr>';
-    },
-  });
+      },
+      error: function (xhr, status, error) {
+        console.error("Error fetching data:", error);
+        tableBody.innerHTML =
+          '<tr><td colspan="3">Error al cargar los datos</td></tr>';
+      },
+    });
+  }
 }
 
 // Function to display empty rows with dashes
