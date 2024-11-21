@@ -1,4 +1,5 @@
 window.onload = configurarEntradas;
+
 let costo_estimado = 0;
 let choicesInstance;
 
@@ -30,7 +31,7 @@ const ajaxAparatos = () => {
           searchEnabled: false,
           placeholder: true,
           itemSelectText: "",
-          noChoicesText: "sin Datos",
+          noChoicesText: "Sin Dispositivos",
           noResultsText: "No hay opciones disponibles",
         });
       }
@@ -45,6 +46,13 @@ const ajaxAparatos = () => {
 ajaxAparatos();
 
 function configurarEntradas() {
+  choicesInstance = new Choices("#aparato", {
+    searchEnabled: false,
+    placeholder: true,
+    itemSelectText: "",
+    noChoicesText: "Sin Dispositivos",
+    noResultsText: "No hay opciones disponibles",
+  });
   const equipo = document.getElementById("aparato").value;
   console.log(equipo);
 
@@ -158,7 +166,20 @@ function cambiarPotencia() {
   });
 }
 
-document.getElementById("aparato").addEventListener("change", function (event) {
+$("#aparato").on("change", function (event) {
+  const equipo = $(this).val();
+  $("#Estatus").empty(); // Elimina todo el contenido (texto o HTML)
+
+  if (equipo > 0) {
+    // Cambia la ruta de la imagen y el texto de Estatus a "Estable"
+    $("#deviceIcon").attr("src", "../img/foco_activa.png");
+    $("#Estatus").text("Estable");
+  } else {
+    // Cambia la ruta de la imagen y el texto de Estatus a "Nada"
+    $("#deviceIcon").attr("src", "../img/foco.png");
+    $("#Estatus").text("Apagado");
+  }
+
   event.preventDefault();
 });
 
