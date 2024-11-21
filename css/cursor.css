@@ -42,7 +42,8 @@ input,
 /* Cursor para elementos no permitidos */
 .choices__item--selectable:disabled,
 .choices__item--highlighted:disabled,
-.choices__item:not(.choices__item--selectable):hover {
+.choices__item:not(.choices__item--selectable):hover,
+.choices__item--disabled {
   cursor: var(--cursor-default);
 }
 
