@@ -140,6 +140,24 @@ body {
   text-align: center;
 }
 
+@media (max-width: 1024px) {
+  .table-row {
+    font-size: 1rem;
+  }
+  .table-header {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-row {
+    font-size: 0.95rem;
+  }
+  .table-header {
+    font-size: 1.1rem;
+  }
+}
+
 .btn-period,
 .btn-mensual {
   background-color: #f8f7dc;
@@ -164,6 +182,18 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+@media (max-width: 1024px) {
+  .estado-consumo {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .estado-consumo {
+    font-size: 1.5rem;
+  }
 }
 
 .table-container {
