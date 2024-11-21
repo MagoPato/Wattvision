@@ -1,154 +1,154 @@
 body {
-    font-family: Arial, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, bold;
-   
+  font-family: Arial, "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif, bold;
 }
 
 .sidebar {
-    width: 150px;
-    background-color: #000;
-    height: 100vh;
-    position: fixed;
-    padding-top: 20px;
+  width: 150px;
+  background-color: #000;
+  height: 100vh;
+  position: fixed;
+  padding-top: 20px;
 }
 
-.sidebar a {    
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
+.sidebar a {
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
 }
 
 .sidebar a:hover {
-    background-color: #575757;
+  background-color: #575757;
 }
 
 .main-content {
-    margin-left: 170px;
-    padding: 20px;
+  margin-left: 170px;
+  padding: 20px;
 }
 
 .card {
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .status {
-    color: rgb(12, 148, 12);
-    font-size: 200%;
-    text-align: center;
-    margin-top: 20px;
+  color: rgb(12, 148, 12);
+  font-size: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  margin-top: 20px;
 }
 
 .entry {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .entry-icon {
-    font-size: 24px;
-    margin-right: 10px;
+  font-size: 24px;
+  margin-right: 10px;
 }
 
 .navbar {
-    background-color: black;
+  background-color: black;
 }
 
 aside {
-    background-color: black;
-    position: fixed;
+  background-color: black;
+  position: fixed;
 }
 
 .nav-item {
-    margin-bottom: 22px;
+  margin-bottom: 22px;
 }
 
 @media (max-width: 767px) {
-    .navbar {
-        background-color: #F0F0F0;
-    }
+  .navbar {
+    background-color: #f0f0f0;
+  }
 
-    aside {
-        display: none;
-    }
+  aside {
+    display: none;
+  }
 
-    .navbar-bottom {
-        display: flex;
-    }
+  .navbar-bottom {
+    display: flex;
+  }
 
-    main {
-        margin-left: 0px;
-        margin-bottom: 55px;
-    }
+  main {
+    margin-left: 0px;
+    margin-bottom: 55px;
+  }
 }
 
 @media (min-width: 768px) {
-    .navbar-bottom {
-        display: none;
-    }
+  .navbar-bottom {
+    display: none;
+  }
 
-    main {
-        margin-left: 145px;
-    }
+  main {
+    margin-left: 145px;
+  }
 }
 
 main {
-    background-color: #F0F0F0;
-    color: rgb(0, 0, 0);
-    padding: 20px;
-    font-size: 126%;
-    font-weight: bold;
-    min-height: calc(100vh - 56px);
-    justify-content: center;
-    align-items: center;
+  background-color: #f0f0f0;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  font-size: 126%;
+  font-weight: bold;
+  min-height: calc(100vh - 56px);
+  justify-content: center;
+  align-items: center;
 }
 
 .disabled {
-    /* Color gris para el fondo */
-    color: #6666;
-    /* Color gris para el texto */
-    pointer-events: none;
-    /* Deshabilitar interacciones */
+  /* Color gris para el fondo */
+  color: #6666;
+  /* Color gris para el texto */
+  pointer-events: none;
+  /* Deshabilitar interacciones */
 }
 
 /* Estilo base para Choices.js */
 .choices {
-    border: 1px solid #28A745; /* Color del borde */
-    border-radius: 0.25rem; /* Bordes redondeados */
-    background-color: white; /* Fondo blanco */
-    box-shadow: none; /* Sin sombra */
-   
-    width: 225px; /* Ajuste automático al contenido */
+  border: 1px solid #28a745; /* Color del borde */
+  border-radius: 0.25rem; /* Bordes redondeados */
+  background-color: white; /* Fondo blanco */
+  box-shadow: none; /* Sin sombra */
+
+  width: 225px; /* Ajuste automático al contenido */
 }
 
 /* Estilo para el contenedor de selección */
 .choices--single .choices__inner {
-    padding: 0.5rem; /* Espaciado interno */
-    border: none; /* Sin borde interno */
+  padding: 0.5rem; /* Espaciado interno */
+  border: none; /* Sin borde interno */
 }
 
 /* Color del texto del elemento seleccionado */
 .choices__item--selectable {
-    color: rgb(0, 0, 0); /* Color del texto */
+  color: rgb(0, 0, 0); /* Color del texto */
 }
 
 /* Color de fondo y texto al resaltar */
 .choices__item--highlighted {
-    background-color: #28A745; /* Color verde al resaltar */
-    color: white; /* Color del texto al resaltar */
+  background-color: #28a745; /* Color verde al resaltar */
+  color: white; /* Color del texto al resaltar */
 }
 
 /* Sombra al enfocar */
 .choices:focus {
-    border-color: #28A745; /* Color del borde al enfocar */
-    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Sombra al enfocar */
+  border-color: #28a745; /* Color del borde al enfocar */
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); /* Sombra al enfocar */
 }
