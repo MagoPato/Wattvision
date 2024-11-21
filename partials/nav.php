@@ -2,58 +2,89 @@
 // Obtiene el nombre del archivo actual
 $page = htmlspecialchars(basename($_SERVER['PHP_SELF']));
 
-// Genera una URL con el timestamp del archivo para evitar problemas de caché
-function imgWithVersion($path)
+// Función para verificar la compatibilidad con WebP
+function isWebPSupported()
 {
-    return $path . '?v=' . filemtime($path);
+    return strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false;
 }
 
-// Imágenes por defecto
-$iconoGraficaImagen = imgWithVersion("../img/icon-Grafica.png");
-$iconoDatosImagen = imgWithVersion("../img/icon-Datos.png");
-$iconoInicioImagen = imgWithVersion("../img/icon-Inicio.png");
-$iconoInforme = imgWithVersion("../img/informacion.png");
-$iconoPerfil = imgWithVersion("../img/perfil_web.png");
-$iconoPerfil_movil = imgWithVersion("../img/perfil_movil.png");
+// Función para obtener la URL de la imagen en el formato correcto
+function getImage($filename)
+{
+    $extension = isWebPSupported() ? '.webp' : '.png';
+    return imgWithVersion("../img/{$filename}{$extension}");
+}
+
+// Genera una URL con el timestamp del archivo para evitar problemas de caché
+if (!function_exists('imgWithVersion')) {
+    function imgWithVersion($path)
+    {
+        return $path . '?v=' . filemtime($path);
+    }
+}
+
+// Definir las imágenes de los iconos
+$iconos = [
+    'iconoGraficaImagen' => 'icon-Grafica',
+    'iconoDatosImagen' => 'icon-Datos',
+    'iconoInicioImagen' => 'icon-Inicio',
+    'iconoInforme' => 'informacion',
+    'iconoPerfil' => 'perfil_web',
+    'iconoPerfil_movil' => 'perfil_movil',
+    'iconoDipositivo_web'    => 'dispositivo_web',
+    'iconoDipositivo_movil'    => 'dispositivo_movil',
+    'iconoLogo'    => 'logo'
+
+];
 
 // Cambia las imágenes según la página actual
-if ($page == "inicio.php") {
-    $iconoInicioImagen = imgWithVersion("../img/icon-inicio-activo.png");
-} elseif ($page == "Graficas.php") {
-    $iconoGraficaImagen = imgWithVersion("../img/icon-Grafica-activo.png");
-} elseif ($page == "datos.php") {
-    $iconoDatosImagen = imgWithVersion("../img/icon-datos-activo.png");
-} elseif ($page == "ayuda.php") {
-    $iconoInforme = imgWithVersion("../img/informacion_activo.png");
-} elseif ($page == "perfil.php") {
-    $iconoPerfil = imgWithVersion("../img/perfil_activo.png"); //version web
-    $iconoPerfil_movil = imgWithVersion("../img/perfil_activo.png"); //version movil
+foreach ($iconos as $variable => $filename) {
+    $$variable = getImage($filename);
 }
 
-$navClassInicio = $page == "inicio.php" ? "#" : "../views/inicio.php";
-$navClassGraficas = $page == "Graficas.php" ? "#" : "../views/Graficas.php";
-$navClassDatos = $page == "Datos.php" ? "#" : "../views/datos.php";
-$navClassAyuda = $page == "ayuda.php" ? "#" : "../views/ayuda.php";
+// Cambiar las imágenes activas según la página actual
+switch ($page) {
+    case 'inicio.php':
+        $iconoInicioImagen = getImage("icon-Inicio-activo");
+        break;
+    case 'Graficas.php':
+        $iconoGraficaImagen = getImage("icon-Grafica-activo");
+        break;
+    case 'datos.php':
+        $iconoDatosImagen = getImage("icon-Datos-activo");
+        break;
+    case 'ayuda.php':
+        $iconoInforme = getImage("informacion_activo");
+        break;
+    case 'perfil.php':
+        $iconoPerfil = getImage("perfil_activo"); // versión web
+        $iconoPerfil_movil = getImage("perfil_activo"); // versión móvil
+        break;
+}
+$navClassInicio = $page == "inicio.php" ? "#" : "../views/inicio";
+$navClassGraficas = $page == "Graficas.php" ? "#" : "../views/Graficas";
+$navClassDatos = $page == "Datos.php" ? "#" : "../views/datos";
+$navClassAyuda = $page == "ayuda.php" ? "#" : "../views/ayuda";
 ?>
 
 <!-- Barra de navegación superior (solo para pantallas grandes) -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand d-none d-md-flex align-items-center" href="../views/inicio.php">
-            <img src="../img/logo.png" alt="Logo" style="width: 40px; height: 44px;"> <!-- Cambia a ../ -->
+        <a class="navbar-brand d-none d-md-flex align-items-center" href="../views/inicio">
+            <img src="<?php echo $iconoLogo; ?>" alt="Logo" style="width: 40px; height: 44px;"> <!-- Cambia a ../ -->
             <span class="ml-2"
                 style="font-family: 'Arial Rounded MT Bold', sans-serif; font-size: 1.7rem;">WATTVISION</span>
         </a>
 
         <!-- Botón de menú hamburguesa en móvil con imagen -->
-        <a href="perfil.php" class="navbar-toggler d-md-none" data-target="#navbarContent">
+        <a href="perfil" class="navbar-toggler d-md-none" data-target="#navbarContent">
             <img src="<?php echo $iconoPerfil_movil; ?>" alt=" Menú" style="width: 36px; height: 36px;">
         </a>
 
         <!-- Icono de más a la derecha en móvil con PNG diferente -->
-        <a href="../views/dispositivo.php" class="text-white d-flex align-items-center">
-            <img src="../img/dispositivo_movil.png" alt="Icono móvil" class="d-md-none" style="width: 45px; height: 45px;"> <!-- Cambia a ../ -->
-            <img src="../img/dispositivo_web.png" alt="Icono web" class="d-none d-md-block" style="width: 45px; height: 45px;"> <!-- Cambia a ../ -->
+        <a href="../views/dispositivo" class="text-white d-flex align-items-center">
+            <img src="<?php echo $iconoDipositivo_movil; ?>" alt="Icono móvil" class="d-md-none" style="width: 45px; height: 45px;"> <!-- Cambia a ../ -->
+            <img src="<?php echo $iconoDipositivo_web; ?>" alt="Icono web" class="d-none d-md-block" style="width: 45px; height: 45px;"> <!-- Cambia a ../ -->
         </a>
     </div>
 </nav>
@@ -97,7 +128,7 @@ $navClassAyuda = $page == "ayuda.php" ? "#" : "../views/ayuda.php";
     <aside class="p-3" style="width: 145px; height: calc(100vh - 56px);">
         <ul class="list-unstyled">
             <li class="nav-item d-flex align-items-center">
-                <a href="../views/perfil.php" class="nav-link text-white d-flex align-items-center">
+                <a href="../views/perfil" class="nav-link text-white d-flex align-items-center">
                     <img src="<?php echo $iconoPerfil; ?>" alt="Opción 1" class="mr-2" style="width: 37px; height: 37px;"> <!-- Cambia a ../ -->
                     <span style="color: white;">Perfil</span>
                 </a>
@@ -130,8 +161,3 @@ $navClassAyuda = $page == "ayuda.php" ? "#" : "../views/ayuda.php";
         </ul>
     </aside>
 </div>
-
-<!-- Incluye Bootstrap JS al final del cuerpo -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
