@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validar el formato del email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error'] = "Correo electrónico no válido.";
-        header("Location: ../index.php");
+        header("Location: ../index");
         exit();
     }
 
@@ -30,16 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_email'] = $user['email']; // Guardar el email en la sesión
 
             // Redireccionar al usuario a la página principal después del inicio de sesión
-            header("Location: ../views/inicio.php"); // Cambia 'inicio.php' por la ruta de tu página principal
+            header("Location: ../views/inicio"); // Cambia 'inicio.php' por la ruta de tu página principal
             exit();
         } else {
             $_SESSION['error'] = "Contraseña incorrecta.";
-            header("Location: ../index.php"); // Redirigir a la página de inicio de sesión
+            header("Location: ../index"); // Redirigir a la página de inicio de sesión
             exit();
         }
     } else {
         $_SESSION['error'] = "No se encontró un usuario con ese correo electrónico.";
-        header("Location: ../index.php"); // Redirigir a la página de inicio de sesión
+        header("Location: ../index"); // Redirigir a la página de inicio de sesión
         exit();
     }
 }
