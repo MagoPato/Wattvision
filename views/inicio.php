@@ -8,6 +8,7 @@ require_once '../php/security.php'; // Si la ruta es correcta
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bienvenido a Wattvision, donde puedes calcular el costo estimado de tus dispositivos electrónicos, gestionar entradas en uso y obtener información sobre el consumo de energía.">
     <title>Wattvision</title>
     <?php include '../partials/header.php'; ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -25,10 +26,12 @@ require_once '../php/security.php'; // Si la ruta es correcta
         <div class="card mb-3">
             <div class="card-body">
                 <div class="title">
+                    <img id="deviceIcon" src="../img/foco.png" alt="Icono" width="36" height="36" style="vertical-align: middle; margin-right: 8px;">
                     Costo estimado: <span id="costo_estimado"></span>
                 </div>
             </div>
         </div>
+
 
         <div class="card">
             <div class="mt-4">
@@ -74,18 +77,15 @@ require_once '../php/security.php'; // Si la ruta es correcta
             </div>
 
             <div class="status">
-                Estable
+                Luz: <span id="Estatus">Apagado</span>
             </div>
         </div>
     </main>
 
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/dipositivos.js"></script>
+
 </body>
 
 </html>
