@@ -10,6 +10,7 @@ include '../controllers/perfil_controller.php'; ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Accede a tu perfil en Wattvision para gestionar tu cuenta. Revisa tu información personal y cierra sesión cuando lo desees.">
     <title>Perfil</title>
     <!-- CSS de Bootstrap -->
     <?php include '../partials/header.php'; ?>
@@ -46,9 +47,9 @@ include '../controllers/perfil_controller.php'; ?>
     </main>
 
     <!-- JS de Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

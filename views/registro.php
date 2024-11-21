@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Regístrate en Wattvision para comenzar a monitorear y gestionar tu consumo eléctrico. Crea una cuenta de usuario fácilmente con tu correo electrónico y contraseña.">
     <title>Wattvision - Reg</title>
     <?php include '../partials/header.php'; ?>
     <link rel="stylesheet" href="../css/registro.css">
@@ -36,14 +37,14 @@
 
             </div>
             <div class="mt-3">
-                <small>¿Ya tienes una cuenta? <a href="../index.php">Inicia Sesion</a></small>
+                <small>¿Ya tienes una cuenta? <a href="../index">Inicia Sesion</a></small>
             </div>
         </form>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
